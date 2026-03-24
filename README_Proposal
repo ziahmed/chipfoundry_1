@@ -56,6 +56,39 @@ A. Core Processing-AI Accelerator (NPU/TPU), Microcontroller / SoC,RAM (4–8GB 
 B. Connectivity & Interface-USB‑C 3.1,USB Hub Controller . Optional Wi‑Fi/BLE module
 C. Security-Secure Element (TPM‑like),Hardware AES engine
 
++--------------------------------------------------------------+
+|                        Caravel Harness                       |
+|--------------------------------------------------------------|
+|  Management SoC (PicoRV32)                                   |
+|   - Firmware, config, debug                                  |
+|   - Talks to user logic via Wishbone                         |
+|                                                              |
+|  Housekeeping + GPIO + SPI + UART + Clocking                 |
+|                                                              |
+|  User Project Area (Your Design)                             |
+|  +--------------------------------------------------------+  |
+|  | Meeting Agent Controller                               |  |
+|  |  - RISC-V core or FSM                                  |  |
+|  |  - Audio feature extractor (DSP)                       |  |
+|  |  - Lightweight NLP/tagging accelerator                 |  |
+|  |  - On-chip SRAM buffers                                |  |
+|  |  - Control/status registers                            |  |
+|  |                                                        |  |
+|  |  Interfaces:                                           |  |
+|  |   - SPI/UART to USB controller                         |  |
+|  |   - SPI/I2S to audio codec                             |  |
+|  |   - SPI/parallel to external NPU/TPU                   |  |
+|  +--------------------------------------------------------+  |
++--------------------------------------------------------------+
+
+Off-chip on PCB:
+- USB-C controller + PHY
+- Audio codec + mic
+- External NPU/TPU
+- DRAM/Flash
+- Power, connectors, etc.
+
+
 Software Architecture
 A. On‑Device AI Stack
 - LLM (4B–8B) optimized for:
